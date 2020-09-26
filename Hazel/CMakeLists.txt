@@ -1,0 +1,1 @@
+add_library(Hazel SHARED Core.h Application.cpp Application.h ../Hazel.h EntryPoint.h)
