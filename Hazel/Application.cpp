@@ -3,6 +3,7 @@
 //
 
 #include "Application.h"
+#include "Log.h"
 #include <iostream>
 
 namespace Hazel {
@@ -11,7 +12,7 @@ namespace Hazel {
     Application::~Application() {}
 
     void Application::Run() {
-        std::cout << "Running..." << std::endl;
+        HZ_CORE_TRACE("Running...");
         while (true);
     }
 

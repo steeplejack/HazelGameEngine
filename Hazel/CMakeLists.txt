@@ -1,1 +1,6 @@
-add_library(Hazel SHARED Core.h Application.cpp Application.h ../Hazel.h EntryPoint.h)
+add_library(Hazel SHARED Core.h Application.cpp Application.h ../Hazel.h EntryPoint.h Log.cpp Log.h)
+target_compile_definitions(Hazel PUBLIC SPDLOG_FMT_EXTERNAL)
+target_include_directories(Hazel PUBLIC "${SPDLOG_ROOT}/include")
+target_link_libraries(Hazel PRIVATE glm)
+target_link_libraries(Hazel PRIVATE imgui::imgui)
+target_link_libraries(Hazel PRIVATE spdlog::spdlog)
