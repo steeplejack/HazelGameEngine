@@ -2,6 +2,7 @@
 // Created by Kevin Gori on 27/09/2020.
 //
 
+#include "hzpch.h"
 #include "Log.h"
 #include "spdlog/sinks/stdout_color_sinks.h"
 

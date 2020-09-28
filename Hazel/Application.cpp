@@ -2,6 +2,7 @@
 // Created by Kevin Gori on 25/09/2020.
 //
 
+#include "hzpch.h"
 #include "Hazel/Application.h"
 
 #include "Hazel/Events/ApplicationEvent.h"

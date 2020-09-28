@@ -6,8 +6,9 @@ add_library(Hazel SHARED Core.h
         Events/Event.h
         Events/ApplicationEvent.h
         Events/MouseEvent.h
-        Events/KeyEvent.h)
+        Events/KeyEvent.h ../hzpch.h ../hzpch.cpp)
 target_compile_definitions(Hazel PUBLIC SPDLOG_FMT_EXTERNAL)
+target_precompile_headers(Hazel PUBLIC ../hzpch.h)
 target_include_directories(Hazel PUBLIC
         "${SPDLOG_ROOT}/include"
         "${PROJECT_BINARY_DIR}"
