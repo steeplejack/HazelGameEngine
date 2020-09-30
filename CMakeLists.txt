@@ -12,6 +12,7 @@ hunter_add_package(imgui)
 hunter_add_package(glfw)
 hunter_add_package(spdlog)
 
+find_package(glfw3 CONFIG REQUIRED)
 find_package(spdlog CONFIG REQUIRED)
 find_package(imgui CONFIG REQUIRED)
 find_package(glm CONFIG REQUIRED)
@@ -23,3 +24,6 @@ add_subdirectory(Hazel)  # Shared library
 
 
 add_subdirectory(Sandbox)  # Executable
+
+
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -DENABLE_DEBUG_MACRO")
