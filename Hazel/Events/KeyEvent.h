@@ -16,12 +16,12 @@ namespace Hazel {
 
     protected:
         KeyEvent(int keycode)
-                : m_Keycode(keycode) {}
+                : m_KeyCode(keycode) {}
 
         int m_KeyCode;
     };
 
-    class HAZEL_API KeyPressedEvent : KeyEvent {
+    class HAZEL_API KeyPressedEvent : public KeyEvent {
     public:
         KeyPressedEvent(int keycode, int repeatCount)
                 : KeyEvent(keycode), m_RepeatCount(repeatCount) {}
