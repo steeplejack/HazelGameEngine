@@ -1,4 +1,4 @@
-add_executable(Sandbox Sandbox.cpp)
+add_executable(Sandbox SandboxApp.cpp)
 target_link_libraries(Sandbox PUBLIC Hazel)
 target_include_directories(Sandbox PUBLIC
         "${PROJECT_BINARY_DIR}"
