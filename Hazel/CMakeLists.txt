@@ -10,10 +10,6 @@ add_library(Hazel SHARED Core.h
         ../hzpch.h
         ../hzpch.cpp
         Window.h
-#        ../Platform/Windows/WindowsWindow.cpp
-#        ../Platform/Windows/WindowsWindow.h
-#        ../Platform/Mac/MacWindow.cpp
-#        ../Platform/Mac/MacWindow.h
         ../Platform/General/GeneralWindow.cpp
         ../Platform/General/GeneralWindow.h
         LayerStack.cpp LayerStack.h Layer.cpp Layer.h)
