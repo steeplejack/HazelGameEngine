@@ -1,16 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 
-include("hunter/HunterGate.cmake")
-HunterGate(
-        URL "https://github.com/cpp-pm/hunter/archive/v0.23.270.tar.gz"
-        SHA1 "41a60fd1f73d9e4d1af7db812bcdeef7ad486d48"
-)
-
 project(cherno_game_engine)
-hunter_add_package(glm)
-hunter_add_package(imgui)
-hunter_add_package(glfw)
-hunter_add_package(spdlog)
 
 find_package(glfw3 CONFIG REQUIRED)
 find_package(spdlog CONFIG REQUIRED)

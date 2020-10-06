@@ -18,7 +18,6 @@ target_compile_definitions(Hazel PUBLIC HZ_PLATFORM_MAC)
 target_compile_definitions(Hazel PUBLIC GLFW_INCLUDE_NONE)
 target_precompile_headers(Hazel PUBLIC ../hzpch.h)
 target_include_directories(Hazel PUBLIC
-        "${SPDLOG_ROOT}/include"
         "${PROJECT_BINARY_DIR}"
         "${PROJECT_SOURCE_DIR}/Hazel"
         "${PROJECT_SOURCE_DIR}")
