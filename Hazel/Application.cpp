@@ -19,12 +19,12 @@ namespace Hazel {
     }
     Application::~Application() {}
 
-    void Application::PushLayer(Layer* layer) {
-        m_Layerstack.PushLayer(layer);
+    void Application::PushLayer(std::unique_ptr<Layer> layer) {
+        m_Layerstack.PushLayer(std::move(layer));
     }
 
-    void Application::PushOverlay(Layer* overlay) {
-        m_Layerstack.PushOverlay(overlay);
+    void Application::PushOverlay(std::unique_ptr<Layer> overlay) {
+        m_Layerstack.PushOverlay(std::move(overlay));
     }
 
     void Application::OnEvent(Event &e) {
@@ -46,7 +46,7 @@ namespace Hazel {
             glClearColor(1, 0, 1, 1);
             glClear(GL_COLOR_BUFFER_BIT);
 
-            for (Layer* layer : m_Layerstack) {
+            for (std::unique_ptr<Layer>& layer : m_Layerstack) {
                 layer->OnUpdate();
             }
             m_Window->OnUpdate();

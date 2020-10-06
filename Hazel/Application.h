@@ -22,8 +22,8 @@ namespace Hazel {
 
         void OnEvent(Event& e);
 
-        void PushLayer(Layer* layer);
-        void PushOverlay(Layer* overlay);
+        void PushLayer(std::unique_ptr<Layer> layer);
+        void PushOverlay(std::unique_ptr<Layer> overlay);
 
     private:
         bool OnWindowClose(WindowCloseEvent &e);

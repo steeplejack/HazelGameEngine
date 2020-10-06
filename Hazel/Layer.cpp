@@ -13,7 +13,7 @@ namespace Hazel {
     }
 
     Layer::~Layer() {
-
+        HZ_CORE_WARN("Deleted layer {0}", m_DebugName);
     };
 
 }
