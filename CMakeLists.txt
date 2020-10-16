@@ -4,7 +4,6 @@ project(cherno_game_engine)
 
 find_package(glfw3 CONFIG REQUIRED)
 find_package(spdlog CONFIG REQUIRED)
-find_package(imgui CONFIG REQUIRED)
 find_package(glm CONFIG REQUIRED)
 find_package(glad CONFIG REQUIRED) # No glad in Hunter, so using vcpkg
 

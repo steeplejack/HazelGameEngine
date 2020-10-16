@@ -48,6 +48,13 @@ void GeneralWindow::Init(const WindowProps& props) {
         s_GLFWInitialized = true;
     }
 
+#ifdef HZ_PLATFORM_MAC
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);  // 3.2+ only
+    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);            // Required on Mac
+#endif
+
     m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
     glfwMakeContextCurrent(m_Window);
     int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
