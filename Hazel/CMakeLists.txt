@@ -1,38 +1,42 @@
-add_library(Hazel SHARED Core.h
-        Application.cpp Application.h
-        ../Hazel.h
-        EntryPoint.h
-        Log.cpp Log.h
-        Events/Event.h
-        Events/ApplicationEvent.h
-        Events/MouseEvent.h
-        Events/KeyEvent.h
-        ../hzpch.h
-        ../hzpch.cpp
-        Window.h
-        ../Platform/General/GeneralWindow.cpp
-        ../Platform/General/GeneralWindow.h
-        LayerStack.cpp
-        LayerStack.h
-        Layer.cpp
-        Layer.h
-        ImGui/ImGuiLayer.h
-        ImGui/ImGuiLayer.cpp
-        ../Vendor/ImGui/imgui.cpp
-        ../Vendor/ImGui/backends/imgui_impl_opengl3.cpp
-        ../Vendor/ImGui/imgui_demo.cpp
-        ../Vendor/ImGui/imgui_draw.cpp
-        ../Vendor/ImGui/imgui_widgets.cpp)
+add_library(Hazel SHARED
+        src/Hazel/Core.h
+        src/Hazel/Application.cpp
+        src/Hazel/Application.h
+        src/Hazel.h
+        src/Hazel/EntryPoint.h
+        src/Hazel/Log.cpp
+        src/Hazel/Log.h
+        src/Hazel/Events/Event.h
+        src/Hazel/Events/ApplicationEvent.h
+        src/Hazel/Events/MouseEvent.h
+        src/Hazel/Events/KeyEvent.h
+        src/hzpch.h
+        src/hzpch.cpp
+        src/Hazel/Window.h
+        src/Platform/General/GeneralWindow.cpp
+        src/Platform/General/GeneralWindow.h
+        src/Hazel/LayerStack.cpp
+        src/Hazel/LayerStack.h
+        src/Hazel/Layer.cpp
+        src/Hazel/Layer.h
+        src/Hazel/ImGui/ImGuiLayer.h
+        src/Hazel/ImGui/ImGuiLayer.cpp
+        Vendor/ImGui/imgui.cpp
+        Vendor/ImGui/backends/imgui_impl_opengl3.cpp
+        Vendor/ImGui/imgui_demo.cpp
+        Vendor/ImGui/imgui_draw.cpp
+        Vendor/ImGui/imgui_widgets.cpp)
 
 target_compile_definitions(Hazel PUBLIC SPDLOG_FMT_EXTERNAL)
 target_compile_definitions(Hazel PUBLIC HZ_PLATFORM_MAC)
 target_compile_definitions(Hazel PUBLIC GLFW_INCLUDE_NONE)
-target_precompile_headers(Hazel PUBLIC ../hzpch.h)
+target_precompile_headers(Hazel PUBLIC src/hzpch.h)
 target_include_directories(Hazel PUBLIC
         "${PROJECT_BINARY_DIR}"
-        "${PROJECT_SOURCE_DIR}/Hazel"
         "${PROJECT_SOURCE_DIR}"
-        "${PROJECT_SOURCE_DIR}/Vendor/ImGui")
+        "${PROJECT_SOURCE_DIR}/Hazel"
+        "${PROJECT_SOURCE_DIR}/Hazel/src"
+        "${PROJECT_SOURCE_DIR}/Hazel/Vendor/ImGui")
 
 target_link_libraries(Hazel PRIVATE glm)
 target_link_libraries(Hazel PRIVATE glfw)
