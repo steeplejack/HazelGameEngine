@@ -4,6 +4,7 @@
 
 #pragma once
 
+#include <GLFW/glfw3.h>
 #include "hzpch.h"
 
 #include "Core.h"
@@ -24,6 +25,7 @@ namespace Hazel {
 
     // Interface representing a desktop window
     class HAZEL_API Window {
+        friend class ImGuiLayer;
     public:
         using EventCallbackFn = std::function<void(Event&)>;
 
@@ -40,6 +42,9 @@ namespace Hazel {
         virtual bool IsVSync() const = 0;
 
         static Window* Create(const WindowProps& props = WindowProps());
+
+    private:
+        virtual void* GetWindowPointer() = 0;
     };
 }
 

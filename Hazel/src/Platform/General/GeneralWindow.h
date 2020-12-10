@@ -25,6 +25,9 @@ public:
     void SetVSync(bool enabled) override;
     bool IsVSync() const override;
 
+    // Expose the underlying window pointer
+    void* GetWindowPointer() override { return (void*)m_Window; }
+
 private:
     virtual void Init(const WindowProps& props);
     virtual void Shutdown();

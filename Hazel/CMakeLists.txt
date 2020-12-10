@@ -23,6 +23,7 @@ add_library(Hazel SHARED
         src/Hazel/ImGui/ImGuiLayer.cpp
         Vendor/ImGui/imgui.cpp
         Vendor/ImGui/backends/imgui_impl_opengl3.cpp
+        Vendor/ImGui/backends/imgui_impl_glfw.cpp
         Vendor/ImGui/imgui_demo.cpp
         Vendor/ImGui/imgui_draw.cpp
         Vendor/ImGui/imgui_widgets.cpp)
