@@ -73,9 +73,6 @@ namespace Hazel {
         }
 
         ImGui::Render();
-        int display_w, display_h;
-//        glfwGetFramebufferSize((GLFWwindow*)app.GetWindow().GetWindowPointer(), &display_w, &display_h);
-//        glViewport(0, 0, display_w, display_h);
         glClearColor(clear_color.x, clear_color.y, clear_color.z, clear_color.w);
         glClear(GL_COLOR_BUFFER_BIT);
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
@@ -85,11 +82,11 @@ namespace Hazel {
         EventDispatcher dispatcher(event);
         dispatcher.Dispatch<MouseButtonPressedEvent>(HZ_BIND_EVENT_FN(ImGuiLayer::OnMouseButtonPressedEvent));
         dispatcher.Dispatch<MouseButtonReleasedEvent>(HZ_BIND_EVENT_FN(ImGuiLayer::OnMouseButtonReleasedEvent));
-        dispatcher.Dispatch<MouseMovedEvent>(HZ_BIND_EVENT_FN(ImGuiLayer::OnMouseButtonMovedEvent));
-        dispatcher.Dispatch<MouseScrolledEvent>(HZ_BIND_EVENT_FN(ImGuiLayer::OnMouseScrollEvent));
+        dispatcher.Dispatch<MouseMovedEvent>(HZ_BIND_EVENT_FN(ImGuiLayer::OnMouseMovedEvent));
+        dispatcher.Dispatch<MouseScrolledEvent>(HZ_BIND_EVENT_FN(ImGuiLayer::OnMouseScrolledEvent));
         dispatcher.Dispatch<KeyPressedEvent>(HZ_BIND_EVENT_FN(ImGuiLayer::OnKeyPressedEvent));
-        dispatcher.Dispatch<KeyReleasedEvent>(HZ_BIND_EVENT_FN(ImGuiLayer::OnKeyReleasedEvent));
         dispatcher.Dispatch<KeyTypedEvent>(HZ_BIND_EVENT_FN(ImGuiLayer::OnKeyTypedEvent));
+        dispatcher.Dispatch<KeyReleasedEvent>(HZ_BIND_EVENT_FN(ImGuiLayer::OnKeyReleasedEvent));
         dispatcher.Dispatch<WindowResizeEvent>(HZ_BIND_EVENT_FN(ImGuiLayer::OnWindowResizeEvent));
     }
 
@@ -133,7 +130,7 @@ namespace Hazel {
         const char* glsl_version = "#version 410";
 #endif
         Application& app = Application::Get();
-        ImGui_ImplGlfw_InitForOpenGL((GLFWwindow*)app.GetWindow().GetWindowPointer(), true);
+        ImGui_ImplGlfw_InitForOpenGL(static_cast<GLFWwindow*>(app.GetWindow().GetWindowPointer()), false);
         ImGui_ImplOpenGL3_Init(glsl_version);
     }
 
@@ -155,14 +152,14 @@ namespace Hazel {
         return false;
     }
 
-    bool ImGuiLayer::OnMouseButtonMovedEvent(MouseMovedEvent &e) {
+    bool ImGuiLayer::OnMouseMovedEvent(MouseMovedEvent &e) {
         ImGuiIO& io = ImGui::GetIO();
         io.MousePos = ImVec2(e.GetX(), e.GetY());
 
         return false;
     }
 
-    bool ImGuiLayer::OnMouseScrollEvent(MouseScrolledEvent &e) {
+    bool ImGuiLayer::OnMouseScrolledEvent(MouseScrolledEvent &e) {
         ImGuiIO& io = ImGui::GetIO();
         io.MouseWheelH += e.GetXOffset();
         io.MouseWheel += e.GetYOffset();
@@ -171,18 +168,38 @@ namespace Hazel {
     }
 
     bool ImGuiLayer::OnKeyPressedEvent(KeyPressedEvent &e) {
+        ImGuiIO& io = ImGui::GetIO();
+        io.KeysDown[e.GetKeyCode()] = true;
+
+        io.KeyCtrl = io.KeysDown[GLFW_KEY_LEFT_CONTROL] || io.KeysDown[GLFW_KEY_RIGHT_CONTROL];
+        io.KeyShift = io.KeysDown[GLFW_KEY_LEFT_SHIFT] || io.KeysDown[GLFW_KEY_RIGHT_SHIFT];
+        io.KeyAlt = io.KeysDown[GLFW_KEY_LEFT_ALT] || io.KeysDown[GLFW_KEY_RIGHT_ALT];
+        io.KeySuper = io.KeysDown[GLFW_KEY_LEFT_SUPER] || io.KeysDown[GLFW_KEY_RIGHT_SUPER];
         return false;
     }
 
     bool ImGuiLayer::OnKeyReleasedEvent(KeyReleasedEvent &e) {
+        ImGuiIO& io = ImGui::GetIO();
+        io.KeysDown[e.GetKeyCode()] = false;
+
         return false;
     }
 
     bool ImGuiLayer::OnKeyTypedEvent(KeyTypedEvent &e) {
+         ImGuiIO& io = ImGui::GetIO();
+         int keycode = e.GetKeyCode();
+         io.AddInputCharacter((unsigned int)keycode);
+
         return false;
     }
 
     bool ImGuiLayer::OnWindowResizeEvent(WindowResizeEvent &e) {
+        ImGuiIO& io = ImGui::GetIO();
+        io.DisplaySize = ImVec2(e.GetWidth(), e.GetHeight());
+        io.DisplayFramebufferScale = ImVec2(1.0f, 1.0f);
+        glViewport(0, 0, e.GetWidth(), e.GetHeight());
+
+
         return false;
     }
 }

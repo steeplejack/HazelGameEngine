@@ -26,8 +26,8 @@ namespace Hazel {
     private:
         bool OnMouseButtonPressedEvent(MouseButtonPressedEvent& e);
         bool OnMouseButtonReleasedEvent(MouseButtonReleasedEvent& e);
-        bool OnMouseButtonMovedEvent(MouseMovedEvent& e);
-        bool OnMouseScrollEvent(MouseScrolledEvent& e);
+        bool OnMouseMovedEvent(MouseMovedEvent& e);
+        bool OnMouseScrolledEvent(MouseScrolledEvent& e);
         bool OnKeyPressedEvent(KeyPressedEvent& e);
         bool OnKeyReleasedEvent(KeyReleasedEvent& e);
         bool OnKeyTypedEvent(KeyTypedEvent& e);

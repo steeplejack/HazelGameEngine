@@ -26,7 +26,7 @@ public:
     bool IsVSync() const override;
 
     // Expose the underlying window pointer
-    void* GetWindowPointer() override { return (void*)m_Window; }
+    void* GetWindowPointer() override { return static_cast<void*>(m_Window); }
 
 private:
     virtual void Init(const WindowProps& props);
