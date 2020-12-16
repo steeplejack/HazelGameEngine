@@ -13,8 +13,8 @@ add_library(Hazel SHARED
         src/hzpch.h
         src/hzpch.cpp
         src/Hazel/Window.h
-        src/Platform/General/GeneralWindow.cpp
-        src/Platform/General/GeneralWindow.h
+        src/Platform/Mac/MacWindow.cpp
+        src/Platform/Mac/MacWindow.h
         src/Hazel/LayerStack.cpp
         src/Hazel/LayerStack.h
         src/Hazel/Layer.cpp
@@ -26,7 +26,10 @@ add_library(Hazel SHARED
         Vendor/ImGui/backends/imgui_impl_glfw.cpp
         Vendor/ImGui/imgui_demo.cpp
         Vendor/ImGui/imgui_draw.cpp
-        Vendor/ImGui/imgui_widgets.cpp)
+        Vendor/ImGui/imgui_widgets.cpp
+        src/Hazel/Input.h
+        src/Platform/Mac/MacInput.h
+        src/Platform/Mac/MacInput.cpp)
 
 target_compile_definitions(Hazel PUBLIC SPDLOG_FMT_EXTERNAL)
 target_compile_definitions(Hazel PUBLIC HZ_PLATFORM_MAC)

@@ -130,12 +130,15 @@ namespace Hazel {
         const char* glsl_version = "#version 410";
 #endif
         Application& app = Application::Get();
-        ImGui_ImplGlfw_InitForOpenGL(static_cast<GLFWwindow*>(app.GetWindow().GetWindowPointer()), false);
+        GLFWwindow* window = static_cast<GLFWwindow*>(app.GetWindow().GetNativeWindow());
+        ImGui_ImplGlfw_InitForOpenGL(window, false);
         ImGui_ImplOpenGL3_Init(glsl_version);
     }
 
     void ImGuiLayer::OnDetach() {
-        //Layer::OnDetach();
+        ImGui_ImplOpenGL3_Shutdown();
+        ImGui_ImplGlfw_Shutdown();
+        ImGui::DestroyContext();
     }
 
     bool ImGuiLayer::OnMouseButtonPressedEvent(MouseButtonPressedEvent &e) {

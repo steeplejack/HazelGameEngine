@@ -25,7 +25,6 @@ namespace Hazel {
 
     // Interface representing a desktop window
     class HAZEL_API Window {
-        friend class ImGuiLayer;
     public:
         using EventCallbackFn = std::function<void(Event&)>;
 
@@ -43,8 +42,7 @@ namespace Hazel {
 
         static Window* Create(const WindowProps& props = WindowProps());
 
-    private:
-        virtual void* GetWindowPointer() = 0;
+        virtual void* GetNativeWindow() const = 0;
     };
 }
 

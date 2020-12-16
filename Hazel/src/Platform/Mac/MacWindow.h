@@ -10,10 +10,10 @@
 
 namespace Hazel {
 
-class GeneralWindow : public Window {
+class MacWindow : public Window {
 public:
-    GeneralWindow(const WindowProps& props);
-    virtual ~GeneralWindow();
+    MacWindow(const WindowProps& props);
+    virtual ~MacWindow();
 
     void OnUpdate() override;
 
@@ -26,7 +26,7 @@ public:
     bool IsVSync() const override;
 
     // Expose the underlying window pointer
-    void* GetWindowPointer() override { return static_cast<void*>(m_Window); }
+    virtual void* GetNativeWindow() const override { return m_Window; }
 
 private:
     virtual void Init(const WindowProps& props);

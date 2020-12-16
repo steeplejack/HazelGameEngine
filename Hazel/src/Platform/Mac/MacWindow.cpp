@@ -2,7 +2,7 @@
 // Created by Kevin Gori on 02/10/2020.
 //
 #include "hzpch.h"
-#include "GeneralWindow.h"
+#include "MacWindow.h"
 
 #include "Hazel/Events/ApplicationEvent.h"
 #include "Hazel/Events/MouseEvent.h"
@@ -21,19 +21,19 @@ static void GLFWErrorCallback(int error, const char* description) {
 // Make this properly tailored to platform later.
 #ifdef HZ_PLATFORM_MAC
 Window* Window::Create(const WindowProps& props) {
-    return new GeneralWindow(props);
+    return new MacWindow(props);
 }
 #endif
 
-GeneralWindow::GeneralWindow(const WindowProps& props) {
+MacWindow::MacWindow(const WindowProps& props) {
     Init(props);
 }
 
-GeneralWindow::~GeneralWindow() {
+MacWindow::~MacWindow() {
     Shutdown();
 };
 
-void GeneralWindow::Init(const WindowProps& props) {
+void MacWindow::Init(const WindowProps& props) {
     m_Data.Title = props.Title;
     m_Data.Width = props.Width;
     m_Data.Height = props.Height;
@@ -138,16 +138,16 @@ void GeneralWindow::Init(const WindowProps& props) {
     });
 }
 
-void GeneralWindow::Shutdown() {
+void MacWindow::Shutdown() {
     glfwDestroyWindow(m_Window);
 }
 
-void GeneralWindow::OnUpdate() {
+void MacWindow::OnUpdate() {
     glfwPollEvents();
     glfwSwapBuffers(m_Window);
 }
 
-void GeneralWindow::SetVSync(bool enabled) {
+void MacWindow::SetVSync(bool enabled) {
     if (enabled) {
         glfwSwapInterval(1);
     }
@@ -157,7 +157,7 @@ void GeneralWindow::SetVSync(bool enabled) {
     m_Data.VSync = enabled;
 }
 
-bool GeneralWindow::IsVSync() const {
+bool MacWindow::IsVSync() const {
     return m_Data.VSync;
 }
 

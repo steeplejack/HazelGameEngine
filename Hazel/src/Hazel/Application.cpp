@@ -4,6 +4,7 @@
 
 #include "hzpch.h"
 #include "Hazel/Application.h"
+#include "Hazel/Input.h"
 
 #include "Hazel/Log.h"
 
@@ -56,6 +57,10 @@ namespace Hazel {
             for (Layer* layer : m_Layerstack) {
                 layer->OnUpdate();
             }
+
+            auto [x, y] = Input::GetMousePosition();
+            HZ_CORE_TRACE("Input::GetMousePosition: {0}, {1}", x, y);
+
             m_Window->OnUpdate();
         }
     }
