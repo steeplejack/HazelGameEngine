@@ -29,7 +29,7 @@ add_library(Hazel SHARED
         Vendor/ImGui/imgui_widgets.cpp
         src/Hazel/Input.h
         src/Platform/Mac/MacInput.h
-        src/Platform/Mac/MacInput.cpp)
+        src/Platform/Mac/MacInput.cpp src/Hazel/KeyCodes.h src/Hazel/MouseButtonCodes.h)
 
 target_compile_definitions(Hazel PUBLIC SPDLOG_FMT_EXTERNAL)
 target_compile_definitions(Hazel PUBLIC HZ_PLATFORM_MAC)
