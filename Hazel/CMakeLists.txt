@@ -26,6 +26,7 @@ add_library(Hazel SHARED
         Vendor/ImGui/backends/imgui_impl_glfw.cpp
         Vendor/ImGui/imgui_demo.cpp
         Vendor/ImGui/imgui_draw.cpp
+        Vendor/ImGui/imgui_tables.cpp
         Vendor/ImGui/imgui_widgets.cpp
         src/Hazel/Input.h
         src/Platform/Mac/MacInput.h
